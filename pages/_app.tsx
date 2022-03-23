@@ -1,4 +1,5 @@
 import "@assets/main.css";
+import "keen-slider/keen-slider.min.css";
 import { FunctionComponent } from "react";
 import { AppProps } from "next/app";
 import UIProvider from "@components/ui/context";

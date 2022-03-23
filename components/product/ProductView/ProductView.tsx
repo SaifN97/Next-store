@@ -1,9 +1,10 @@
 import cn from "classnames";
 import { FC } from "react";
 import s from "./ProductView.module.css";
-import { Container } from "@components/ui";
+import { Button, Container } from "@components/ui";
 import Image from "next/image";
 import { Product } from "@common/types/product";
+import ProductSlider from "../ProductSlider";
 
 interface Props {
   product: Product;
@@ -12,7 +13,7 @@ interface Props {
 const ProductView: FC<Props> = ({ product }) => {
   return (
     <Container>
-      <div className={cn(s.root, "fit")}>
+      <div className={cn(s.root, "fit", "mb-5")}>
         <div className={cn(s.productDisplay, "fit")}>
           <div className={s.nameBox}>
             <h1 className={s.name}>{product.name}</h1>
@@ -20,16 +21,20 @@ const ProductView: FC<Props> = ({ product }) => {
               {product.price.value} {product.price.currencyCode}
             </div>
           </div>
-          <div className={s.imageContainer}>
-            <Image
-              className={s.img}
-              src={"/product-image-placeholder.svg"}
-              alt={"Product Image"}
-              width={1050}
-              height={1050}
-              quality="85"
-            />
-          </div>
+          <ProductSlider>
+            {product.images.map((img) => (
+              <div key={img.url} className={s.imageContainer}>
+                <Image
+                  className={s.img}
+                  src={img.url}
+                  alt={img.alt}
+                  width={1050}
+                  height={1050}
+                  quality="85"
+                />
+              </div>
+            ))}
+          </ProductSlider>
         </div>
         <div className={s.sidebar}>
           <section>
@@ -42,13 +47,12 @@ const ProductView: FC<Props> = ({ product }) => {
             </div>
           </section>
           <div>
-            <button
-              onClick={() => {}}
-              aria-label="Add to Cart"
+            <Button
               className={s.button}
+              onClick={() => alert("Adding to Cart")}
             >
               Add to Cart
-            </button>
+            </Button>
           </div>
         </div>
       </div>
