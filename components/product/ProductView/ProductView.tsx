@@ -26,10 +26,12 @@ const ProductView: FC<Props> = ({ product }) => {
     try {
       const item = {
         productId: String(product.id),
-        variantId: variant?.id,
+        variantId: String(variant?.id),
         variantOptions: variant?.options,
+        quantity: 1,
       };
       const output = await addItem(item);
+      debugger;
       alert(JSON.stringify(output));
       openSidebar();
     } catch {}
@@ -63,7 +65,7 @@ const ProductView: FC<Props> = ({ product }) => {
           <section>
             {product.options.map((option) => (
               <div className="pb-4" key={option.id}>
-                <h2 className="uppercase font-medium">{option.displayName}</h2>
+                <h2 className="font-medium uppercase">{option.displayName}</h2>
                 <div className="flex flex-row py-4">
                   {option.values.map((optValue) => {
                     const activeChoice =
@@ -89,7 +91,7 @@ const ProductView: FC<Props> = ({ product }) => {
               </div>
             ))}
 
-            <div className="pb-14 break-words w-full max-w-xl text-lg">
+            <div className="w-full max-w-xl text-lg break-words pb-14">
               {product.description}
             </div>
           </section>

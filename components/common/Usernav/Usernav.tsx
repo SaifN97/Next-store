@@ -8,7 +8,6 @@ import s from "./Usernav.module.css";
 const Usernav: FunctionComponent = () => {
   const { openSidebar } = useUI();
   const { data } = useCart();
-  debugger;
   return (
     <nav>
       <ul className={s.list}>
