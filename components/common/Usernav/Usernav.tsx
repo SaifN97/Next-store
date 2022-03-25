@@ -4,15 +4,20 @@ import Link from "next/link";
 import { FunctionComponent } from "react";
 import useCart from "@framework/cart/use-cart";
 import s from "./Usernav.module.css";
+import { LineItem } from "@common/types/cart";
 
 const Usernav: FunctionComponent = () => {
   const { openSidebar } = useUI();
   const { data } = useCart();
+  const itemsCount = data?.lineItems.reduce((count: number, item: LineItem) => {
+    return count + item.quantity;
+  }, 0);
   return (
     <nav>
       <ul className={s.list}>
         <li className={s.item}>
           <Cart onClick={openSidebar} />
+          {itemsCount > 0 && <span className={s.bagCount}>{itemsCount}</span>}
         </li>
         <li className={s.item}>
           <Link href="/wishlist">
