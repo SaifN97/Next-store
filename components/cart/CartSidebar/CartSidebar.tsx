@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { Bag, Cross } from "@components/icons";
 import cn from "classnames";
 import { useUI } from "@components/ui/context";
-import useCart from "@common/cart/use-cart";
+import useCart from "@framework/cart/use-cart";
 
 const CartSidebar: FunctionComponent = () => {
   const isEmpty = true;
@@ -12,8 +12,8 @@ const CartSidebar: FunctionComponent = () => {
   });
 
   const { closeSidebar } = useUI();
-  const cart = useCart();
-  console.log(cart);
+  const data = useCart();
+  console.log(data);
   return (
     <div className={rootClass}>
       <header className="px-4 pt-6 pb-4 sm:px-6">
