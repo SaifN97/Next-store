@@ -12,7 +12,7 @@ const CartSidebar: FunctionComponent = () => {
   });
 
   const { closeSidebar } = useUI();
-  const data = useCart();
+  const { data } = useCart();
   console.log(data);
   return (
     <div className={rootClass}>
