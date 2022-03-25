@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import { Bag, Cross } from "@components/icons";
 import cn from "classnames";
 import { useUI } from "@components/ui/context";
+import useCart from "@common/cart/use-cart";
 
 const CartSidebar: FunctionComponent = () => {
   const isEmpty = true;
@@ -11,44 +12,46 @@ const CartSidebar: FunctionComponent = () => {
   });
 
   const { closeSidebar } = useUI();
+  const cart = useCart();
+  console.log(cart);
   return (
     <div className={rootClass}>
       <header className="px-4 pt-6 pb-4 sm:px-6">
         <div className="flex items-start justify-between space-x-3">
-          <div className="h-7 flex items-center">
+          <div className="flex items-center h-7">
             <button
               onClick={closeSidebar}
-              className="hover:text-gray-500 transition ease-in-out duration-150"
+              className="transition duration-150 ease-in-out hover:text-gray-500"
             >
-              <Cross className="h-6 w-6" />
+              <Cross className="w-6 h-6" />
             </button>
           </div>
         </div>
       </header>
 
       {isEmpty ? (
-        <div className="flex-1 px-4 flex flex-col justify-center items-center">
-          <span className="border border-dashed border-primary rounded-full flex items-center justify-center w-16 h-16 p-12 bg-secondary text-secondary">
+        <div className="flex flex-col items-center justify-center flex-1 px-4">
+          <span className="flex items-center justify-center w-16 h-16 p-12 border border-dashed rounded-full border-primary bg-secondary text-secondary">
             <Bag className="absolute" />
           </span>
           <h2 className="pt-6 text-2xl font-bold tracking-wide text-center">
             Your cart is empty
           </h2>
-          <p className="text-accents-3 px-10 text-center pt-2">
+          <p className="px-10 pt-2 text-center text-accents-3">
             Biscuit oat cake wafer icing ice cream tiramisu pudding cupcake.
           </p>
         </div>
       ) : (
         <>
-          <div className="px-4 sm:px-6 flex-1">
-            <h2 className="pt-1 pb-4 text-2xl leading-7 font-bold text-base tracking-wide inline-block">
+          <div className="flex-1 px-4 sm:px-6">
+            <h2 className="inline-block pt-1 pb-4 text-base text-2xl font-bold leading-7 tracking-wide">
               My Cart
             </h2>
-            <ul className="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-t border-accents-3">
+            <ul className="py-6 space-y-6 border-t sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-accents-3">
               Cart Items Here!
             </ul>
           </div>
-          <div className="flex-shrink-0 px-4  py-5 sm:px-6">
+          <div className="flex-shrink-0 px-4 py-5 sm:px-6">
             <div className="border-t border-accents-3">
               <ul className="py-3">
                 <li className="flex justify-between py-1">
@@ -64,7 +67,7 @@ const CartSidebar: FunctionComponent = () => {
                   <span className="font-bold tracking-wide">FREE</span>
                 </li>
               </ul>
-              <div className="flex justify-between border-t border-accents-3 py-3 font-bold mb-10">
+              <div className="flex justify-between py-3 mb-10 font-bold border-t border-accents-3">
                 <span>Total</span>
                 <span>120$</span>
               </div>
